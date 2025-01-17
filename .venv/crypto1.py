@@ -1,3 +1,7 @@
+# Secure Communication using Quantum Key Distribution (QKD)
+# Alice and Bob share a secret key using Quantum Key Distribution (QKD)
+# No eavesdropping no noise
+
 from qiskit import QuantumCircuit, transpile
 from qiskit_aer import AerSimulator
 import random
@@ -45,3 +49,20 @@ if alice_key == bob_key:
     print("Keys match! Secure communication established.")
 else:
     print("Keys do not match! Communication compromised.")
+
+
+# Calculate key rate
+key_rate = len(alice_key) / n_bits
+print(f"Key Rate: {key_rate:.2f}")
+
+# Check for eavesdropping
+discrepancies = sum(1 for a, b in zip(alice_key, bob_key) if a != b)
+# Check for eavesdropping if Alice and Bob's keys do not match in more then 11% of the bits
+if discrepancies > 0.11 * len(bob_key):
+    print(f"Discrepancies detected: {discrepancies}")
+    print("Potential eavesdropping detected!")
+elif discrepancies > 0:
+    print(f"Discrepancies detected: {discrepancies}")
+    print("Possibly noise. Communication is secure.")
+else:
+    print("No discrepancies detected. Communication is secure.")
