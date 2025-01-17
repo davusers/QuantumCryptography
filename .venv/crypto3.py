@@ -1,6 +1,6 @@
 # Secure Communication using Quantum Key Distribution (QKD)
 # Alice and Bob share a secret key using Quantum Key Distribution (QKD)
-# With eavesdropping by Eve, but no noise
+# With eavesdropping, but no noise
 
 from qiskit import QuantumCircuit, transpile
 from qiskit_aer import AerSimulator
